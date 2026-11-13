@@ -1,0 +1,5 @@
+# Sao chép thành .dev.vars khi chạy `npm run dev`.
+# Trước khi có signal-api.phaisinh.online có thể trỏ thẳng vào máy chủ hiện tại (chỉ đọc API công khai):
+API_ORIGIN=https://signal.phaisinh.online
+# Tùy chọn: khóa chung giữa Worker và nginx VPS (xem deploy/nginx_signal_api.conf)
+# ORIGIN_SECRET=

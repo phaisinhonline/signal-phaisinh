@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Các thẻ có id/property dưới đây được Worker điền dữ liệu bot thật (src/index.js) -->
+  <title id="seo-title">Bot tín hiệu VN30F1M | phaisinh.online</title>
+  <meta id="seo-desc" name="description" content="Vị thế, lãi/lỗ và lịch sử lệnh của bot tín hiệu phái sinh VN30F1M.">
+  <link id="seo-canonical" rel="canonical" href="https://signal.phaisinh.online/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="phaisinh.online">
+  <meta id="og-url" property="og:url" content="https://signal.phaisinh.online/">
+  <meta id="og-title" property="og:title" content="Bot tín hiệu VN30F1M">
+  <meta id="og-desc" property="og:description" content="Vị thế, lãi/lỗ và lịch sử lệnh của bot tín hiệu phái sinh VN30F1M.">
+  <meta property="og:image" content="https://phaisinh.online/wp-content/uploads/2026/04/bot-phaisinh-banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141110" media="(prefers-color-scheme: dark)">
+  <meta name="signal-api" content="">
+  <link rel="icon" href="https://phaisinh.online/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://phaisinh.online/favicon-32x32.png" sizes="32x32" type="image/png">
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('signal_theme');
+        var d = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script id="bot-data" type="application/json">null</script>
+  <script type="module" src="/assets/bot.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a href="https://phaisinh.online/" class="brand" aria-label="phaisinh.online – Trang chủ">
+        <img class="brand-logo" src="https://phaisinh.online/brand/logo-phaisinh.png" width="130" height="34" alt="phaisinh.online">
+      </a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="https://phaisinh.online/category/phai-sinh-hom-nay/">Phái sinh hôm nay</a>
+        <a href="https://oi.phaisinh.online/">Vị thế VN30F</a>
+        <a href="/" class="on">Bot tín hiệu</a>
+        <a href="https://phaisinh.online/category/phaisinh101/">Kiến thức</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        </button>
+        <a href="/#nhan-tin-hieu" class="cta">Nhận tín hiệu</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="report-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Đường dẫn"><a href="/">Bot tín hiệu</a> / <span id="crumb-name">Chi tiết bot</span></nav>
+      <div class="head-top" style="margin-top:12px">
+        <div class="eyebrow"><span id="bot-eyebrow">Bot TradingView</span> <span id="feed-status" class="status">Đang kết nối</span></div>
+      </div>
+      <h1 class="title" id="bot-name">Bot tín hiệu VN30F1M</h1>
+      <p class="deck" id="bot-desc"></p>
+      <div class="tags" id="bot-tags"></div>
+      <div class="head-actions" id="bot-actions"></div>
+      <div id="pos-banner"></div>
+    </div>
+  </section>
+
+  <main class="wrap" id="main">
+    <section class="block" aria-labelledby="h-perf">
+      <div class="block-head">
+        <h2 id="h-perf">Hiệu suất</h2>
+        <div class="seg seg-sm" role="group" aria-label="Kỳ thống kê" id="period-seg">
+          <button type="button" data-period="daily" aria-pressed="false">Hôm nay</button>
+          <button type="button" data-period="weekly" aria-pressed="false">Tuần</button>
+          <button type="button" data-period="monthly" aria-pressed="false">Tháng</button>
+          <button type="button" data-period="all" aria-pressed="true">Tất cả</button>
+        </div>
+      </div>
+      <div class="kpis six" id="kpis"></div>
+    </section>
+
+    <section class="block" aria-labelledby="h-eq">
+      <div class="block-head">
+        <h2 id="h-eq">Lãi/lỗ lũy kế</h2>
+        <p class="block-note">Theo thứ tự lệnh đã đóng trong kỳ · điểm/hợp đồng</p>
+      </div>
+      <div class="chart-box"><div class="chart" id="eq-chart"></div><div class="chart-tip" id="eq-tip"></div></div>
+    </section>
+
+    <section class="block" aria-labelledby="h-sig">
+      <div class="block-head">
+        <h2 id="h-sig">Nhật ký lệnh <span class="count" id="sig-count"></span></h2>
+        <button type="button" class="btn-ghost" id="csv-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> Tải CSV
+        </button>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Thời gian</th><th class="l">Hành động</th><th class="l">Hướng</th><th>Giá</th><th>Chốt lời</th><th>Cắt lỗ</th><th class="l">Lý do</th><th>Lãi/lỗ</th></tr></thead>
+          <tbody id="sig-body"><tr><td colspan="8" class="miss">Đang tải…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-calc">
+      <div class="block-head">
+        <h2 id="h-calc">Tính khối lượng theo rủi ro</h2>
+        <p class="block-note">Công cụ minh họa, không phải khuyến nghị</p>
+      </div>
+      <div class="calc">
+        <label class="field">Vốn giao dịch (đ)<input type="text" inputmode="numeric" id="c-cap" value="100.000.000"></label>
+        <label class="field">Rủi ro mỗi lệnh (% vốn)
+          <select id="c-risk"><option value="1">1%</option><option value="2" selected>2%</option><option value="3">3%</option><option value="5">5%</option></select>
+        </label>
+        <label class="field">Khoảng cắt lỗ (điểm)<input type="number" id="c-sl" value="5" min="0.5" step="0.5"></label>
+        <label class="field">Tỷ lệ ký quỹ ước tính (%)<input type="number" id="c-im" value="17" min="5" max="50" step="0.5"></label>
+      </div>
+      <div class="calc" style="margin-top:14px">
+        <div class="calc-out"><b id="c-out-n">–</b><span>hợp đồng tối đa theo rủi ro</span></div>
+        <div class="calc-out"><b id="c-out-risk">–</b><span>số tiền chấp nhận lỗ mỗi lệnh</span></div>
+        <div class="calc-out"><b id="c-out-margin">–</b><span>hợp đồng tối đa theo ký quỹ</span></div>
+        <div class="calc-out"><b id="c-out-im">–</b><span>ký quỹ ước tính mỗi hợp đồng</span></div>
+      </div>
+      <p class="chart-foot">Số hợp đồng = vốn × % rủi ro ÷ (khoảng cắt lỗ × 100.000 đ). Ký quỹ tính theo giá VN30F1M hiện tại; kiểm tra tỷ lệ thực tế với công ty chứng khoán.</p>
+    </section>
+
+    <section class="block notes" aria-labelledby="h-notes">
+      <div class="block-head"><h2 id="h-notes">Ghi chú</h2></div>
+      <ul>
+        <li>Lãi/lỗ tính bằng điểm trên 1 hợp đồng VN30F1M (1 điểm = 100.000 đ), chưa trừ phí, thuế và trượt giá.</li>
+        <li>Nhật ký hiển thị tối đa 50 tín hiệu gần nhất do bot gửi qua webhook TradingView.</li>
+        <li>Bot intraday tự đóng mọi vị thế lúc 14:28 trước phiên ATC.</li>
+      </ul>
+      <p class="disclaimer">Kết quả là ghi nhận tín hiệu tự động trong quá khứ, không đảm bảo kết quả tương lai và không phải khuyến nghị đầu tư. Giao dịch phái sinh có đòn bẩy và rủi ro mất vốn cao.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>© 2026 phaisinh.online · Xếp hạng và tín hiệu bot phái sinh VN30F1M.</span>
+      <nav class="footer-links" aria-label="Liên kết chân trang">
+        <a href="https://phaisinh.online/">Trang chủ</a>
+        <a href="/">Bảng xếp hạng</a>
+        <a href="https://bantin.phaisinh.online/">Bản tin</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

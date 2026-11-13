@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bot tín hiệu phái sinh VN30F1M – Xếp hạng & vị thế | phaisinh.online</title>
+  <meta name="description" content="Theo dõi vị thế Long/Short, lãi/lỗ theo thời gian thực và bảng xếp hạng hiệu suất các bot tín hiệu phái sinh VN30F1M trên TradingView.">
+  <link rel="canonical" href="https://signal.phaisinh.online/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="phaisinh.online">
+  <meta property="og:url" content="https://signal.phaisinh.online/">
+  <meta property="og:title" content="Bot tín hiệu phái sinh VN30F1M – Xếp hạng & vị thế">
+  <meta property="og:description" content="Vị thế Long/Short, lãi/lỗ theo thời gian thực và bảng xếp hạng hiệu suất các bot tín hiệu VN30F1M.">
+  <meta property="og:image" content="https://phaisinh.online/wp-content/uploads/2026/04/bot-phaisinh-banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141110" media="(prefers-color-scheme: dark)">
+  <!-- Để trống = gọi API cùng tên miền (Worker chuyển tiếp & cache). Có thể trỏ thẳng API VPS, xem docs/DEPLOY.md -->
+  <meta name="signal-api" content="">
+  <link rel="icon" href="https://phaisinh.online/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://phaisinh.online/favicon-32x32.png" sizes="32x32" type="image/png">
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('signal_theme');
+        var d = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="/assets/tokens.css">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script type="module" src="/assets/index.js"></script>
+</head>
+<body>
+  <a class="skip" href="#bang-xep-hang">Bỏ qua tới bảng xếp hạng</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a href="https://phaisinh.online/" class="brand" aria-label="phaisinh.online – Trang chủ">
+        <img class="brand-logo" src="https://phaisinh.online/brand/logo-phaisinh.png" width="130" height="34" alt="phaisinh.online">
+      </a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="https://phaisinh.online/category/phai-sinh-hom-nay/">Phái sinh hôm nay</a>
+        <a href="https://oi.phaisinh.online/">Vị thế VN30F</a>
+        <a href="/" class="on" aria-current="page">Bot tín hiệu</a>
+        <a href="https://phaisinh.online/category/phaisinh101/">Kiến thức</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" id="sound-toggle" class="icon-btn" aria-pressed="false" aria-label="Bật âm báo vào lệnh" title="Bật âm báo vào lệnh">
+          <svg class="i-sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+          <svg class="i-sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3l5-4v14l-5-4H4z"/><path d="m16 10 5 5M21 10l-5 5"/></svg>
+        </button>
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Chuyển giao diện Sáng / Tối" title="Chuyển giao diện Sáng / Tối">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        </button>
+        <a href="#nhan-tin-hieu" class="cta">Nhận tín hiệu</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="report-head">
+    <div class="wrap">
+      <div class="head-top">
+        <div class="eyebrow">Bảng xếp hạng bot <span id="feed-status" class="status">Đang kết nối</span></div>
+        <div class="seg" role="group" aria-label="Kỳ thống kê" id="period-seg">
+          <button type="button" data-period="daily" aria-pressed="true">Hôm nay</button>
+          <button type="button" data-period="weekly" aria-pressed="false">Tuần</button>
+          <button type="button" data-period="monthly" aria-pressed="false">Tháng</button>
+          <button type="button" data-period="all" aria-pressed="false">Tất cả</button>
+        </div>
+      </div>
+      <h1 class="title">Bot tín hiệu phái sinh VN30F1M</h1>
+      <p class="deck" id="deck" aria-live="polite">Đang tổng hợp vị thế và hiệu suất của các bot…</p>
+      <div class="market" aria-label="Giá hợp đồng VN30F1M">
+        <span><span class="sym">VN30F1M</span></span>
+        <span class="px" id="px-last">–</span>
+        <span class="chip flat" id="px-chg">–</span>
+        <span class="range" title="Biên độ phiên: thấp nhất – cao nhất (vạch vàng là giá tham chiếu)">
+          <span id="px-low" class="num">–</span>
+          <span class="range-bar" aria-hidden="true"><b id="px-ref-mark" style="left:50%"></b><i id="px-mark" style="left:50%"></i></span>
+          <span id="px-high" class="num">–</span>
+        </span>
+        <span id="px-session">–</span>
+        <span>Cập nhật <span id="px-time" class="num">–</span></span>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap" id="main">
+    <div class="kpis" id="kpis">
+      <div class="kpi">
+        <div class="kpi-lbl">Bot đang giữ lệnh</div>
+        <div class="kpi-val"><span id="k-open">–</span><small id="k-open-sub"></small></div>
+        <div class="dbar" aria-hidden="true"><i class="long" id="k-dbar-long" style="width:0"></i><i class="short" id="k-dbar-short" style="width:0"></i></div>
+        <div class="kpi-delta" id="k-open-split"><span class="chip pos">0 Long</span><span class="chip neg">0 Short</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Lệnh đã đóng</div>
+        <div class="kpi-val"><span id="k-trades">–</span><small id="k-trades-sub"></small></div>
+        <div class="kpi-delta" id="k-trades-delta"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Lãi/lỗ trung bình mỗi lệnh</div>
+        <div class="kpi-val"><span id="k-avg">–</span><small>điểm</small></div>
+        <div class="kpi-delta" id="k-avg-delta"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Bot dẫn đầu kỳ</div>
+        <div class="kpi-val name" id="k-top">–</div>
+        <div class="kpi-delta" id="k-top-delta"></div>
+      </div>
+    </div>
+
+    <section class="block" aria-labelledby="h-open">
+      <div class="block-head">
+        <h2 id="h-open">Vị thế đang mở <span class="count" id="open-count"></span></h2>
+        <p class="block-note">Lãi/lỗ tạm tính theo giá khớp gần nhất · Bot intraday tự đóng lệnh lúc 14:28</p>
+      </div>
+      <div id="open-list"><div class="empty"><span class="sk"></span></div></div>
+    </section>
+
+    <section class="block" aria-labelledby="h-lb" id="bang-xep-hang">
+      <div class="block-head">
+        <h2 id="h-lb">Bảng xếp hạng <span class="count" id="lb-count"></span></h2>
+        <p class="block-note" id="lb-note">Xếp theo điểm tổng hợp (lãi/lỗ, tỷ lệ thắng, profit factor, sụt giảm)</p>
+      </div>
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <span class="sr-only">Tìm bot</span>
+          <input type="search" id="q" placeholder="Tìm theo tên hoặc mã bot" autocomplete="off">
+        </label>
+        <div class="chips" role="group" aria-label="Lọc theo vị thế">
+          <button type="button" data-pos="BUY" aria-pressed="true"><i class="long"></i>Long</button>
+          <button type="button" data-pos="SELL" aria-pressed="true"><i class="short"></i>Short</button>
+          <button type="button" data-pos="FLAT" aria-pressed="true"><i></i>Đứng ngoài</button>
+        </div>
+        <span class="spacer"></span>
+        <label class="toggle" title="Ẩn bot có dưới 3 lệnh đã đóng trong kỳ để tránh đánh giá theo mẫu quá nhỏ">
+          <input type="checkbox" id="min-trades"> Chỉ bot có từ 3 lệnh
+        </label>
+      </div>
+      <div class="lb" id="lb" role="table" aria-label="Bảng xếp hạng bot">
+        <div class="lb-row head" role="row">
+          <div role="columnheader">#</div>
+          <div role="columnheader">Bot</div>
+          <div role="columnheader"><button type="button" data-sort="pos">Vị thế</button></div>
+          <div role="columnheader"><button type="button" data-sort="pnl">Lãi/lỗ</button></div>
+          <div role="columnheader"><button type="button" data-sort="wr">Tỷ lệ thắng</button></div>
+          <div role="columnheader"><button type="button" data-sort="pf">PF</button></div>
+          <div role="columnheader"><button type="button" data-sort="dd">Sụt giảm</button></div>
+          <div role="columnheader" class="spark-cell">Diễn biến</div>
+        </div>
+        <div id="lb-body"><div class="empty"><span class="sk"></span> Đang tải bảng xếp hạng…</div></div>
+      </div>
+      <details class="waiting" id="waiting">
+        <summary>Bot chưa có giao dịch trong kỳ <small id="waiting-count"></small></summary>
+        <div class="wait-grid" id="waiting-grid"></div>
+      </details>
+    </section>
+
+    <section class="block" aria-labelledby="h-join" id="nhan-tin-hieu">
+      <div class="block-head">
+        <h2 id="h-join">Nhận tín hiệu</h2>
+        <p class="block-note">Tín hiệu được gửi tự động ngay khi bot khớp lệnh</p>
+      </div>
+      <div class="join">
+        <a class="join-card" href="https://zalo.me/g/phaisinh" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+          <h3>Nhóm Zalo</h3>
+          <p>Nhận thông báo vào lệnh, chốt lời, cắt lỗ của bot qua nhóm Zalo.</p>
+          <span class="go">Tham gia nhóm ↗</span>
+        </a>
+        <a class="join-card" href="https://bantin.phaisinh.online/" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <h3>Bản tin phái sinh</h3>
+          <p>Tổng hợp nhận định và số liệu sau mỗi phiên giao dịch VN30F.</p>
+          <span class="go">Đăng ký bản tin ↗</span>
+        </a>
+        <a class="join-card" href="https://phaisinh.online/category/bot/tradingview/" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+          <h3>Thư viện bot TradingView</h3>
+          <p>Bài giới thiệu chiến lược, chỉ báo và cách cài đặt từng bot.</p>
+          <span class="go">Xem thư viện ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block notes" aria-labelledby="h-notes">
+      <div class="block-head"><h2 id="h-notes">Cách đọc số liệu</h2></div>
+      <details open>
+        <summary>Phương pháp tính</summary>
+        <ul>
+          <li>Lãi/lỗ tính bằng <b>điểm</b> trên 1 hợp đồng VN30F1M; 1 điểm tương ứng 100.000 đ, chưa trừ phí và thuế.</li>
+          <li>Lãi/lỗ tạm tính của lệnh đang mở dùng giá khớp gần nhất của VN30F1M, cập nhật vài giây một lần.</li>
+          <li>Tỷ lệ thắng = số lệnh đóng có lãi / tổng số lệnh đã đóng trong kỳ. PF (profit factor) = tổng lãi / tổng lỗ.</li>
+          <li>Kỳ "Hôm nay", "Tuần", "Tháng" tính theo lịch giao dịch giờ Việt Nam. Bot intraday tự đóng mọi vị thế lúc 14:28, trước phiên ATC.</li>
+          <li>Bot có ít lệnh trong kỳ có thể đứng đầu nhờ may mắn; bật "Chỉ bot có từ 3 lệnh" để so sánh công bằng hơn.</li>
+        </ul>
+      </details>
+      <p class="disclaimer">Kết quả là ghi nhận tín hiệu tự động trong quá khứ, không đảm bảo kết quả tương lai và không phải khuyến nghị đầu tư. Giao dịch phái sinh có đòn bẩy và rủi ro mất vốn cao; hãy tự đánh giá trước khi sử dụng.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>© 2026 phaisinh.online · Xếp hạng và tín hiệu bot phái sinh VN30F1M.</span>
+      <nav class="footer-links" aria-label="Liên kết chân trang">
+        <a href="https://phaisinh.online/">Trang chủ</a>
+        <a href="https://oi.phaisinh.online/">Vị thế VN30F</a>
+        <a href="https://bantin.phaisinh.online/">Bản tin</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

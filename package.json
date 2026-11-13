@@ -1,0 +1,16 @@
+{
+  "name": "signal-phaisinh",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Giao diện signal.phaisinh.online chạy trên Cloudflare Workers (Static Assets + edge API cache)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node --check src/index.js && node --check public/assets/common.js && node --check public/assets/index.js && node --check public/assets/bot.js",
+    "test": "node --test tests/"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

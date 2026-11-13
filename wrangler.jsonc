@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "signal-phaisinh",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-02",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    // Chỉ các đường dẫn này mới gọi Worker (tính vào hạn mức 100.000 request/ngày của gói Free).
+    // Trang chủ, CSS, JS, ảnh... do Static Assets phục vụ, không tính lượt Worker.
+    "run_worker_first": ["/api/*", "/bot/*", "/signal", "/signal/*", "/ranking", "/leaderboard", "/trade"]
+  },
+  "vars": {
+    // Địa chỉ API trên VPS (nginx: deploy/nginx_signal_api.conf). Ghi đè trong .dev.vars khi chạy local.
+    "API_ORIGIN": "https://signal-api.phaisinh.online"
+  },
+  // Gắn tên miền sau khi trỏ DNS (xem docs/DEPLOY.md):
+  // "routes": [{ "pattern": "signal.phaisinh.online", "custom_domain": true }],
+  "observability": { "enabled": true }
+}
