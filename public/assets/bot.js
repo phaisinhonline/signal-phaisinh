@@ -143,7 +143,7 @@ function renderEquity(points) {
 function actionLabel(s) {
   const t = String(s.order_type || '').toUpperCase();
   // Webhook hiện ghi lệnh đảo chiều là ENTRY kèm lãi/lỗ của vị thế cũ
-  if (t === 'ENTRY' && isNum(s.pnl_points)) return 'Đóng & đảo chiều';
+  if (t === 'REVERSE' || (t === 'ENTRY' && isNum(s.pnl_points))) return 'Đóng & đảo chiều';
   if (ACTION[t]) return ACTION[t];
   return Number(s.is_close) ? 'Đóng lệnh' : 'Vào lệnh';
 }
@@ -152,8 +152,19 @@ function renderSignals() {
   $('sig-count').textContent = sigs.length ? `(${sigs.length} gần nhất)` : '';
   if (!sigs.length) { $('sig-body').innerHTML = '<tr><td colspan="8" class="miss">Bot chưa gửi tín hiệu nào.</td></tr>'; return; }
   $('sig-body').innerHTML = sigs.map((s) => {
-    const side = sideOf(s.side);
-    const reason = REASON[String(s.exit_reason || '').toUpperCase()] || s.exit_reason || s.comment || '';
+    let side = sideOf(s.side);
+    if (!side && s.order_type) side = sideOf(s.order_type);
+    if (!side && s.comment) {
+      if (/SHORT|BÁN|SELL/i.test(s.comment)) side = 'SELL';
+      else if (/LONG|MUA|BUY/i.test(s.comment)) side = 'BUY';
+    }
+    let reason = REASON[String(s.exit_reason || '').toUpperCase()] || s.exit_reason || '';
+    if (!reason && (s.order_type === 'REVERSE' || (s.order_type === 'ENTRY' && isNum(s.pnl_points)))) {
+      reason = 'Đảo chiều';
+    }
+    if (!reason && s.comment) {
+      reason = s.comment;
+    }
     return `<tr>
       <td title="${esc(s.created_at || '')}">${fmtTime(s.created_at)}</td>
       <td class="l">${actionLabel(s)}</td>
