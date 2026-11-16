@@ -36,7 +36,7 @@ Khi vượt 100.000 request/ngày, các đường dẫn Worker trả lỗi đế
 > Thứ tự quan trọng: dựng API VPS trước, kiểm tra Worker trên `*.workers.dev`, sau cùng mới chuyển tên miền.
 
 1. **VPS — cập nhật mã dispatcher** (repo Facebook Tracking Group, đã có trong commit cùng đợt): API công khai lọc cấu hình nhóm Zalo/kênh Telegram và trả `Cache-Control`. Khởi động lại dịch vụ `zalo-phaisinh`.
-2. **DNS** (Cloudflare dashboard → phaisinh.online → DNS): thêm bản ghi `A signal-api` → IP VPS, **Proxied** (cam).
+2. **DNS** (Cloudflare dashboard → phaisinh.online → DNS): thêm bản ghi `A signal-api` → IP VPS, **Proxied** (cam). SSL origin: dùng Cloudflare Origin Certificate (SSL/TLS → Origin Server) dán vào aaPanel → SSL → Other certificate, chế độ Full (strict).
 3. **VPS — nginx:** tạo site `signal-api.phaisinh.online` trong aaPanel, dán `deploy/nginx_signal_api.conf`, cấp SSL (hoặc dùng Cloudflare Origin Certificate với SSL mode Full (strict)). Kiểm tra:
    ```bash
    curl -s https://signal-api.phaisinh.online/api/v1/market/price
