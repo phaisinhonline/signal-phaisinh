@@ -16,7 +16,10 @@
     // Địa chỉ API trên VPS (nginx: deploy/nginx_signal_api.conf). Ghi đè trong .dev.vars khi chạy local.
     "API_ORIGIN": "https://signal-api.phaisinh.online"
   },
-  // Gắn tên miền sau khi trỏ DNS (xem docs/DEPLOY.md):
-  // "routes": [{ "pattern": "signal.phaisinh.online", "custom_domain": true }],
+  // Custom domain đã gắn 16/11/2026 (xem docs/DEPLOY.md)
+  "routes": [{ "pattern": "signal.phaisinh.online", "custom_domain": true }],
+  // Giữ địa chỉ workers.dev để chạy thử / dự phòng
+  "workers_dev": true,
+  "preview_urls": false,
   "observability": { "enabled": true }
 }
