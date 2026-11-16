@@ -45,10 +45,10 @@ Khi vượt 100.000 request/ngày, các đường dẫn Worker trả lỗi đế
 4. **Máy local — deploy Worker:**
    ```bash
    npm install
-   npx wrangler login
+   npm run login   # đăng nhập Cloudflare riêng cho repo này (.wrangler-home), tài khoản son.nguyen@encapital.io
    npm run deploy
    ```
-   Mở `https://signal-phaisinh.<tài-khoản>.workers.dev/` để kiểm tra (trên workers.dev, Cache API không hoạt động nên mọi request đi thẳng VPS — chỉ dùng để thử).
+   Mở `https://signal-phaisinh.son-nguyen-458.workers.dev/` để kiểm tra (trên workers.dev, Cache API không hoạt động nên mọi request đi thẳng VPS — chỉ dùng để thử).
 5. **(Tùy chọn) khóa nguồn:** `npx wrangler secret put ORIGIN_SECRET` → nhập chuỗi ngẫu nhiên; bỏ comment khối `X-Edge-Secret` trong nginx với cùng chuỗi rồi reload nginx.
 6. **Chuyển tên miền:** trong `wrangler.jsonc` bỏ comment dòng `routes` (`custom_domain: true`), xóa bản ghi DNS `signal` cũ đang trỏ VPS (Wrangler sẽ báo nếu còn bản ghi trùng), rồi `npm run deploy`. Cloudflare tự tạo DNS + SSL cho `signal.phaisinh.online`.
 7. **Kiểm tra sau chuyển:**

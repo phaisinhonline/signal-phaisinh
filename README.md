@@ -16,5 +16,6 @@ npm install
 cp .dev.vars.example .dev.vars
 npm run dev      # http://127.0.0.1:8787
 npm run check
-npm run deploy   # cần `npx wrangler login`
+npm run login    # lần đầu: đăng nhập Cloudflare riêng cho repo (tài khoản quản lý phaisinh.online)
+npm run deploy
 ```
