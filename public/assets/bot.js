@@ -44,9 +44,16 @@ function renderHead(b) {
   const post = safeUrl(b.phaisinh_post_url);
   const drive = safeUrl(b.drive_link);
   $('bot-actions').innerHTML = `
+    <button type="button" class="btn-outline poster-btn" id="poster-btn" aria-haspopup="dialog" title="Tải ảnh hiệu suất, nhật ký lệnh để chia sẻ"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.7"/><path d="m21 16-5-5-9 9"/></svg> Tải ảnh</button>
     ${post ? `<a class="btn-outline" href="${esc(post)}" target="_blank" rel="noopener">Bài giới thiệu chiến lược ↗</a>` : ''}
     ${drive ? `<a class="btn-ghost" href="${esc(drive)}" target="_blank" rel="noopener nofollow">Tải script ${b.platform === 'amibroker' ? 'AFL' : 'Pine'} ↗</a>` : ''}
     <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg> Sao chép liên kết</button>`;
+  $('poster-btn').addEventListener('click', async () => {
+    try {
+      const { openShare } = await import('./share.js');
+      openShare({ kind: 'bot', bot: state.bot, period: state.period, price: state.price });
+    } catch { toast('Không mở được công cụ tạo ảnh. Vui lòng tải lại trang.'); }
+  });
   $('share-btn').addEventListener('click', async () => {
     const url = `${location.origin}/bot/${encodeURIComponent(b.bot_id)}`;
     try { await navigator.clipboard.writeText(url); toast('Đã sao chép liên kết bot.'); }

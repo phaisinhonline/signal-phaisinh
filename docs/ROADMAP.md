@@ -9,7 +9,8 @@ Trạng thái ngày 13/11/2026. **Mọi mục dưới đây là đề xuất ch�
 - Bảng xếp hạng: tìm kiếm, lọc Long/Short/Đứng ngoài, sắp xếp theo cột, nhãn "mẫu nhỏ", lọc "chỉ bot có từ 3 lệnh", kỳ chia sẻ được qua URL `?ky=weekly`.
 - Trang bot `/bot/{MÃ}` có meta SEO/OG sinh tại edge, biểu đồ lũy kế có tooltip, nhật ký lệnh + CSV, máy tính khối lượng theo rủi ro và ký quỹ.
 - Âm báo vào lệnh (mặc định tắt) + toast.
-- Bỏ: nút tải poster infographic (canvas tự vẽ, lệch thương hiệu) — thay bằng đề xuất ảnh OG động (mục B2).
+- Ảnh poster chia sẻ (17/11/2026, `public/assets/share.js` + `qr.js`, nạp lười khi bấm nút "Tải ảnh" gọn cạnh bộ chọn kỳ ở trang chủ và trong hàng nút trang bot): khổ dọc 1080×1920, nền sáng/tối mặc định theo giao diện người xem (đổi được trong hộp thoại; token `--sig-poster-{light|dark}-*`). Nhiều mẫu để chia sẻ nhiều lần trong ngày không lặp: trang chủ có Xếp hạng / Tiêu điểm (bot dẫn đầu, ưu tiên bot đủ 3 lệnh) / Vị thế (Long–Short realtime, mặc định trong phiên); trang bot có Hiệu suất / Nhật ký lệnh / Lệnh mở. Tiêu đề sinh từ số liệu và nhãn phiên (Phiên sáng, Phiên chiều, Tổng kết phiên…). Đầu ảnh chỉ có một dòng `signal.phaisinh.online` (kiêm logo) và mã QR 100px góc phải trên; chân ảnh chỉ còn một dòng miễn trừ kèm giờ cập nhật. Mã QR (bộ sinh QR tự viết, đã đối chiếu 40/40 với thư viện Python `qrcode`) dẫn về `signal.phaisinh.online/?src=qr` (giữ `?ky=` theo kỳ) hoặc `/bot/{MÃ}`; `?src=qr` chỉ thêm khi URL ≤ 42 byte để QR giữ phiên bản 3 (29×29 ô, 3px/ô ở cỡ 100px). Cần thử quét bằng Zalo trên điện thoại thật; nếu khó quét, tăng `QR_DEFAULT` trong `share.js` lên 120–140.
+  - Hộp thoại xem trước: "Chia sẻ ảnh" (Web Share API, hiện trên điện thoại hỗ trợ chia sẻ tệp), "Tải ảnh", "Sao chép lời giới thiệu" (câu tóm tắt + liên kết, vì Zalo thường bỏ phần chữ khi chia sẻ ảnh).
 
 ## A. Chất lượng dữ liệu (nên làm trước, ảnh hưởng độ tin cậy)
 | # | Đề xuất | Lý do | Công sức |
@@ -24,7 +25,10 @@ Trạng thái ngày 13/11/2026. **Mọi mục dưới đây là đề xuất ch�
 | # | Đề xuất | Giá trị |
 |---|---|---|
 | B1 | Đăng ký nhận tín hiệu theo bot (chọn bot → nhận Telegram/Zalo riêng), trang xác nhận | Biến người xem thành người theo dõi, đo được chuyển đổi. |
-| B2 | Ảnh OG động `/og/bot/{MÃ}.png` sinh tại Worker (Satori/resvg-wasm) với lãi/lỗ, tỷ lệ thắng | Chia sẻ Zalo/Facebook đẹp, thay poster cũ. |
+| B2 | Ảnh OG động `/og/bot/{MÃ}.png` sinh tại Worker (Satori/resvg-wasm) với lãi/lỗ, tỷ lệ thắng | Xem trước liên kết đẹp khi dán link (bổ sung cho poster tải về). |
+| B6 | Kỳ "Quý" cho bảng xếp hạng và poster | API hiện trả về toàn số 0 với `period=quarterly`; cần thêm kỳ quý trong `server.py` rồi thêm nút "Quý" vào `.seg` và `PERIOD_LABEL`. |
+| B7 | Đo lượt quét QR / lượt chia sẻ (Cloudflare Web Analytics theo `?src=qr`, đếm bấm nút poster) | Biết poster nào kéo người xem về nhiều nhất để tối ưu. |
+| B8 | Poster "Tổng kết phiên" tự sinh lúc 15:00 và đăng sẵn lên nhóm Zalo/bantin | Nội dung định kỳ lan tỏa không cần người dùng bấm. |
 | B3 | Nhúng widget `<iframe>`/script "Top 5 bot hôm nay" cho phaisinh.online và bantin | Đồng bộ hệ sinh thái, kéo traffic chéo. |
 | B4 | Bản tổng kết cuối phiên tự động (15:00) đăng bantin + Telegram, có link về signal | Nội dung định kỳ không tốn công. |
 | B5 | Thêm "Bot tín hiệu" vào eco-bar/menu của phaisinh.online và oi | Liên kết nội bộ, SEO. |

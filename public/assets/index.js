@@ -291,13 +291,26 @@ function setPeriod(p) {
   const url = new URL(location.href);
   if (p === 'daily') url.searchParams.delete('ky'); else url.searchParams.set('ky', p);
   history.replaceState(null, '', url);
+  $('poster-btn').title = POSTER_LABEL[p];
   render();
   load();
+}
+
+// ---------- Ảnh poster chia sẻ (share.js nạp khi bấm) ----------
+const POSTER_LABEL = { daily: 'Tải ảnh bản tin hôm nay', weekly: 'Tải ảnh xếp hạng tuần', monthly: 'Tải ảnh xếp hạng tháng', all: 'Tải ảnh xếp hạng từ đầu' };
+async function openPoster() {
+  if (!state.bots.length || state.loadedPeriod !== state.period) { toast('Dữ liệu đang tải, vui lòng thử lại sau giây lát.'); return; }
+  try {
+    const { openShare } = await import('./share.js');
+    openShare({ kind: 'overview', period: state.period, bots: state.bots, price: state.price });
+  } catch { toast('Không mở được công cụ tạo ảnh. Vui lòng tải lại trang.'); }
 }
 
 function init() {
   initTheme();
   initSound();
+  $('poster-btn').title = POSTER_LABEL[state.period];
+  $('poster-btn').addEventListener('click', openPoster);
   document.querySelectorAll('#period-seg button').forEach((b) => {
     b.setAttribute('aria-pressed', String(b.dataset.period === state.period));
     b.addEventListener('click', () => setPeriod(b.dataset.period));

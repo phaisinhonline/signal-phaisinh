@@ -36,3 +36,16 @@
   --shadow-lg: 0 8px 28px rgba(0, 0, 0, .5); --shadow-xl: 0 16px 40px rgba(0, 0, 0, .55);
   color-scheme: dark;
 }
+
+/* Ảnh poster chia sẻ (share.js): hai bộ màu cố định cho nền sáng và tối, mặc định theo giao diện người dùng đang chọn.
+   Giá trị lấy nguyên từ hai khối light/dark ở trên; nền QR luôn trắng để máy quét đọc tốt. */
+:root {
+  --sig-poster-light-bg: #fffaf8; --sig-poster-light-surface: #ffffff; --sig-poster-light-surface-2: #f6f4f3; --sig-poster-light-line: #eeeae8;
+  --sig-poster-light-ink: #111111; --sig-poster-light-ink-2: #444444; --sig-poster-light-muted: #6c6d6d;
+  --sig-poster-light-brand: #d23922; --sig-poster-light-pos: #0b7d44; --sig-poster-light-neg: #d23922; --sig-poster-light-warn: #946300;
+  --sig-poster-light-qr-bg: #ffffff; --sig-poster-light-qr-ink: #111111;
+  --sig-poster-dark-bg: #141110; --sig-poster-dark-surface: #1b1716; --sig-poster-dark-surface-2: #2f2a28; --sig-poster-dark-line: #2f2a28;
+  --sig-poster-dark-ink: #f3efed; --sig-poster-dark-ink-2: #cfc9c6; --sig-poster-dark-muted: #9a9491;
+  --sig-poster-dark-brand: #f0634a; --sig-poster-dark-pos: #2fbf6f; --sig-poster-dark-neg: #ff6b52; --sig-poster-dark-warn: #e0b04a;
+  --sig-poster-dark-qr-bg: #ffffff; --sig-poster-dark-qr-ink: #111111;
+}
