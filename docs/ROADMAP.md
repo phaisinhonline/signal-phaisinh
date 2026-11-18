@@ -48,6 +48,6 @@ Trạng thái ngày 13/11/2026. **Mọi mục dưới đây là đề xuất ch�
 |---|---|---|
 | D1 | Đẩy sự kiện vào lệnh qua Durable Object/WebSocket (hoặc KV + polling 5s) thay vì SSE xuyên VPS | VPS không giữ kết nối mỗi người xem; cần gói Paid cho DO. |
 | D2 | VPS đẩy snapshot leaderboard lên KV/R2 mỗi 10s, Worker đọc KV | VPS gần như không nhận request đọc. |
-| D3 | Cloudflare Web Analytics + đếm click "Nhận tín hiệu" | Đo hiệu quả. |
+| D3 | ~~Đo lường truy cập~~ **Đã làm 18/11/2026:** GA4 `G-1X33LL2HJH` (dùng chung property với phaisinh.online, bantin) qua `public/assets/analytics.js`, kèm sự kiện signal_cta, join_channel, select_bot, article_open, download_script, export_csv, share_open, copy_link, outbound_subsite. Còn lại: đánh dấu join_channel là conversion trong GA. | Đo hiệu quả. |
 | D4 | Test tự động (Playwright) chụp màn hình 375/768/1280, sáng/tối | Chống vỡ giao diện khi agent sửa. |
 | D5 | CI GitHub Actions: `npm run check` + `wrangler deploy` khi merge `main` | Triển khai một chạm. |
